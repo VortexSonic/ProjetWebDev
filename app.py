@@ -29,3 +29,7 @@ def infos():
 @app.route('/clients')
 def clients():
     return render_template('html/clients.html')
+
+@app.route('/commandes')
+def commandes():
+    return render_template('html/commandes.html')
