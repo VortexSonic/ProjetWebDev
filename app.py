@@ -7,17 +7,17 @@ def index():
     return render_template('index/index.html')
 
 @app.route('/artistes')
-def index():
-    return render_template('artistes/artistes.html')
+def artistes():
+    return render_template('html/artistes.html')
 
 @app.route('/albums')
-def index():
-    return render_template('albums/albums.html')
+def albums():
+    return render_template('html/albums.html')
 
 @app.route('/employes')
-def index():
-    return render_template('employes/employes.html')
+def employes():
+    return render_template('html/employes.html')
 
 @app.route('/genres')
-def index():
-    return render_template('genres/genres.html')
+def genres():
+    return render_template('html/genres.html')
