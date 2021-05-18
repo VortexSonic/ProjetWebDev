@@ -2,17 +2,21 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('html/index.html')
+@app.route('/albums')
+def albums():
+    return render_template('html/albums.html')
 
 @app.route('/artistes')
 def artistes():
     return render_template('html/artistes.html')
+    
+@app.route('/clients')
+def clients():
+    return render_template('html/clients.html')
 
-@app.route('/albums')
-def albums():
-    return render_template('html/albums.html')
+@app.route('/commandes')
+def commandes():
+    return render_template('html/commandes.html')
 
 @app.route('/employes')
 def employes():
@@ -22,14 +26,11 @@ def employes():
 def genres():
     return render_template('html/genres.html')
 
+@app.route('/')
+def index():
+    return render_template('html/index.html')
+
 @app.route('/infos')
 def infos():
     return render_template('html/infos.html')
 
-@app.route('/clients')
-def clients():
-    return render_template('html/clients.html')
-
-@app.route('/commandes')
-def commandes():
-    return render_template('html/commandes.html')
