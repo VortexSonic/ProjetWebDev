@@ -1,1 +1,1 @@
-Projet en collab avec Mathieu HEDOIN et Adrien BRARD
+Projet de Dev Web avec Mathieu HEDOIN, Adrien BRARD et Vivien MENARD
