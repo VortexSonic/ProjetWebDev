@@ -8,7 +8,7 @@ def index():
 
 @app.route('/artistes')
 def artistes():
-    return render_template('html/artistes.html')
+    return render_template('index/artistes.html')
 
 @app.route('/albums')
 def albums():
@@ -21,3 +21,7 @@ def employes():
 @app.route('/genres')
 def genres():
     return render_template('html/genres.html')
+
+@app.route('/infos')
+def infos():
+    return render_template('html/infos.html')
