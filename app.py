@@ -4,11 +4,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index/index.html')
+    return render_template('html/index.html')
 
 @app.route('/artistes')
 def artistes():
-    return render_template('index/artistes.html')
+    return render_template('html/artistes.html')
 
 @app.route('/albums')
 def albums():
@@ -25,3 +25,7 @@ def genres():
 @app.route('/infos')
 def infos():
     return render_template('html/infos.html')
+
+@app.route('/clients')
+def clients():
+    return render_template('html/clients.html')
