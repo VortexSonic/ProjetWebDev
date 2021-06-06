@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="banner bg-home"></div>
+<div class="main-container" id="appRoute">
+    <div class="section">
+        <div class="heading">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="flex-grow-1">
+                    <h4>Les artistes - {{ total }} Artistes</h4>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row section">
+            {% for artiste in artistes %}
+            <div class="col-xl-2 col-lg-4 col-sm-6 pb-4">
+                <div class="custom-card">
+                    <div class="custom-card--img">
+                        <a href="{{ url_for('artiste', id=artiste.artist_id) }}">
+                            <img src="{{ url_for('static', filename='artist_1.jpg') }}" alt="{{ artiste.name }}" class="card-img--radius-lg">
+                        </a>
+                    </div>
+
+                    <a href="{{ url_for('artiste', id=artiste.artist_id) }}" class="custom-card--link mt-2">
+                        <h6 class="mb-0">{{ artiste.name }}</h6>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="banner bg-home"></div>
+<div class="main-container" id="appRoute">
+    <div class="section">
+        <div class="heading">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="flex-grow-1">
+                    <h4>Les genres - {{ total }} Genres</h4>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <div class="section row">
+            {% for genre in genres %}
+            <div class="col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="custom-card">
+                    <div class="custom-card--img">
+                        <a href="{{ url_for('genre', id=genre.genre_id) }}">
+                            <img src=".{{ url_for('static', filename='genre_1.jpg') }}" alt="{{ genre.name }}" class="card-img--radius-md">
+                            <span class="bg-blur">{{ genre.name }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

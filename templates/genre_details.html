@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="banner bg-home"></div>
+
+<div class="main-container" id="appRoute">
+    <div class="row section text-center text-md-left">
+        <div class="col-xl-3 col-lg-4 col-sm-5">
+            <img src="{{ url_for('static', filename='genre_1.jpg') }}" alt="" class="card-img--radius-lg">
+        </div>
+        <div class="col-xl-9 col-lg-8 col-sm-7">
+            <div class="row pt-4">
+                <div class="col-xl-8 col-lg-6">
+                    <h5>{% for genre in genres %}{{ genre.name }}{% endfor %}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <ul class="nav nav-tabs line-tabs line-tabs-primary text-uppercase mb-4" id="artistDetails" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="song-tab" data-toggle="tab" href="#song" role="tab" aria-controls="song" aria-selected="true">Chansons du genre : {% for genre in genres %}{{ genre.name }}{% endfor %} - <span class="col-6 font-weight-bold">{{ total }} Chansons</span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="artistDetailsContent">
+            <div class="tab-pane fade show active" id="song" role="tabpanel" aria-labelledby="song-tab">
+                <div class="custom-list">
+                    {% for track in tracks %}
+                    <div class="custom-list--item">
+                        <div class="text-dark custom-card--inline">
+                            <div class="custom-card--inline-img">
+                                <img src="{{ url_for('static', filename='artist_1.jpg') }}" alt="" class="card-img--radius-sm">
+                            </div>
+
+                            <div class="custom-card--inline-desc">
+                                <p class="text-truncate mb-0">{{ track.name }}</p>
+                                <p class="text-truncate text-muted font-sm">{{ track.album.artist.name }} - {{ track.album.title }}</p>
+                            </div>
+                        </div>
+                        <ul class="custom-card--labels d-flex ml-auto">
+                            <li>01,99 $</li>
+                            <li></li>
+                            <li>05:03</li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

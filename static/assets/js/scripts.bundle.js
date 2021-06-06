@@ -63,11 +63,11 @@ $(function () {
 
         //=> Song chart
         song: function () {
-            if ($('#song').length === 0) {
+            if ($('#songChart').length === 0) {
                 return false;
             }
 
-            var songEl = document.getElementById('song').getContext('2d');
+            var songEl = document.getElementById('songChart').getContext('2d');
             var data = {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
                 datasets: [{
@@ -219,15 +219,104 @@ $(function () {
     AppConfig = {
         //=> Initialize function to call all functions of the class
         init: function () {
-            AppConfig.langCheckedToApply();
+            AppConfig.appRouting();
             AppConfig.initAppScrollbars();
-            AppConfig.initSlickCarousel();
+            AppConfig.langCheckedToApply();
             AppConfig.search();
             AppConfig.buttonClickEvents();
+            AppConfig.initTheme();
+            AppConfig.reInitFunction();
+        },
+
+        //=> Reinitialize powerful functions of app
+        reInitFunction: function () {
+            AppConfig.initSlickCarousel();
             AppConfig.materialTab();
             AppConfig.initCountdown();
             AppConfig.addFavorite();
-            AppConfig.initTheme();
+            AudioPlayer.init();
+            Analytics.init();
+        },
+
+        //=> Handle app routing when page url change
+        appRouting: function () {
+            var $document = $(document);
+            $document.on('click', 'a:not(.load-page):not(.external)', function (e) {
+                e.preventDefault();
+
+                var _this = $(this);
+                var url = _this.attr('href') !== 'undefined' ?  _this.attr('href') : null ;
+                if (url && AppConfig.filterLink(url)) {
+                    AppConfig.ajaxLoading(url);
+                }
+            });
+        },
+
+        //=> Filter link a page link or not
+        filterLink: function (link) {
+            if(link === null) {
+                return false;
+            } else if(link.substr(0, 1) === '#') {
+                return false;
+            } else if(link.length >= 10 && link.substr(0,10).toLowerCase() === 'javascript') {
+                return false;
+            } else if(link.length < 1) {
+                return false;
+            }
+
+            return true;
+        },
+
+        //=> Ajax loading for html pages
+        ajaxLoading: function (url) {
+            var History = window.history;
+            History.pushState("", "", url);
+
+            $.ajax({
+                url: url,
+                context: document.body
+            }).done(function (response) {
+                var content = $('<div>' + response + '</div>');
+                changeTitle(content);
+                replaceImageBanner(content);
+                replaceContent(content);
+                setActiveClass();
+            }).fail(function(jqXHR, textStatus){
+                alert('Something went wrong. Please try again');
+                return false;
+            });
+
+            // Change old title with new one
+            function changeTitle(newContent) {
+                $('head title').html(newContent.find('title').html());
+            }
+
+            // Replace old page banner with new one
+            function replaceImageBanner(newContent) {
+                var $banner = $('.banner');
+                var bannerClass = $banner.attr('class');
+                $banner.removeClass(bannerClass.split(' ')[1]);
+                $banner.addClass(newContent.find('.banner').attr('class'));
+            }
+
+            // Replace old page html with new one
+            function replaceContent(newContent) {
+                $('#appRoute').html(newContent.find('#appRoute').html());
+                $('#wrapper').animate({scrollTop:0}, 'fast');
+                Analytics.init();
+                AppConfig.reInitFunction();
+            }
+
+            // Set active class on nav link when page url change
+            function setActiveClass() {
+                var $navLink = $('#sidebar .nav-link');
+                $navLink.removeClass('active');
+                $navLink.each(function () {
+                    if (url === $(this).attr('href')) {
+                        $(this).addClass('active');
+                    }
+                })
+            }
         },
 
         //=> Initialize theme settings
@@ -272,6 +361,7 @@ $(function () {
                 speed: 1000,
                 prevArrow: prev,
                 nextArrow: next,
+                autoplay: true,
 
                 // Breakpoints
                 responsive: [
@@ -342,7 +432,7 @@ $(function () {
 
         //=> Config search ui events
         search: function () {
-            var $search = $('#searchForm');
+            var $search = $('#searchForm #searchInput');
 
             $search.on('click', function (e) {
                 e.stopPropagation();
@@ -444,7 +534,6 @@ $(function () {
 //=> Loader
 $(window).on('load', function () {
     $('#loading').fadeOut(1000);
-    $('#login').modal('show');
 });
 
 $('#wrapper').on("scroll", function() {
@@ -460,6 +549,9 @@ $(function () {
     AudioPlayer = {
         //=> Initialize function to call all functions of the class
         init: function () {
+            if ($('#audioPlayer').length === 0) {
+                return false;
+            }
             AudioPlayer.initAudioPlayer();
             AudioPlayer.volumeDropdownClick();
             AudioPlayer.volumeIconClick();
@@ -564,7 +656,7 @@ $(function () {
 
         //=> Add audio in player on click of card
         addAudioInPlayer: function () {
-            var $audio = $('a[class="external" data-audio]');
+            var $audio = $('a[data-audio]');
 
             $audio.on('click', function () {
                 var audioData = $(this).data('audio');
@@ -601,7 +693,7 @@ $(function () {
             'themeDark': this.options.darkTheme,
             'header': this.options.header,
             'sidebar': this.options.sidebar,
-            'player': this.options.player,
+            'player': this.options.player
         };
 
         /*
@@ -638,7 +730,7 @@ $(function () {
      * @public
      */
     Theme.Defaults = {
-        darkTheme: false,
+        darkTheme: true,
 
         header: 0,
         sidebar: 0,

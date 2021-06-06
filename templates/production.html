@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="banner bg-home"></div>
+  <div class="main-container" id="appRoute">
+    <div class="section">
+      <div class="heading">
+        <div class="d-flex flex-wrap align-items-end">
+          <div class="flex-grow-1">
+            <h4>Descriptif de la conception du projet </h4>
+          </div>
+        </div>
+        <hr>
+      </div>
+
+      <!-- Informations-->
+      <section class="page-item">
+        <div class="container">
+          <div class="text-center">
+            <h2 class="section-heading text-uppercase">Informations</h2>
+            <h3 class="section-subheading text-muted">Ici, découvrez notre projet</h3>
+          </div>
+          <div class="row text-center">
+            <div class="col-md-4">
+                        <span class="la-stack la-4x">
+                            <i class="la la-circle la-stack-2x text-primary"></i>
+                            <i class="la la-code la-stack-1x text-primary"></i>
+                        </span>
+              <h4 class="my-3">Technologies Utilises</h4>
+              <p class="text-muted">
+                Flask -
+                Peewee -
+                WTForms</p>
+            </div>
+            <div class="col-md-4">
+                        <span class="la-stack la-4x">
+                            <i class="la la-circle la-stack-2x text-primary"></i>
+                            <i class="la la-laptop la-stack-1x text-primary"></i>
+                        </span>
+              <h4 class="my-3">Responsive Design</h4>
+              <p class="text-muted">Utilisation de bootstrap pour le fond et le coté responsive</p>
+            </div>
+            <div class="col-md-4">
+                        <span class="la-stack la-4x">
+                            <i class="la la-circle la-stack-2x text-primary"></i>
+                            <i class="la la-database la-stack-1x text-primary"></i>
+                        </span>
+              <h4 class="my-3">BDD</h4>
+              <p class="text-muted">Utilisation d'une base de données - chinook - Musical</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br>
+      <br>
+
+      <!-- Team-->
+        <section class="page-item">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-heading text-uppercase">Team</h2>
+              <h3 class="section-subheading text-muted">Equipe de développement</h3>
+            </div>
+            <div class="row text-center">
+              <div class="col-md-4">
+                  <img class="rounded-circle" style="width: 220px;" src="static/assets/images/team/1.jpg" alt="Quentin" />
+                  <h4>Quentin Desse</h4>
+                  <p class="text-muted">Licence pro RGI</p>
+                  <button type="button" class="btn btn-social mb-2" href="https://twitter.com/Quentin_D_9"><i class="la la-twitter"></i></button>
+                  <button type="button" class="btn btn-social mb-2" href="https://www.facebook.com/quentin.desse.9/"><i class="la la-facebook"></i></button>
+                  <button type="button" class="btn btn-social mb-2" href="https://www.linkedin.com/in/quentin-desse-ab1b781a1/"><i class="la la-linkedin"></i></button>
+              </div>
+              <div class="col-md-4">
+                  <img class="rounded-circle" style="width: 200px;" src="static/assets/images/team/2.jpg" alt="Théo" />
+                  <h4>Théo Radde</h4>
+                  <p class="text-muted">Licence pro RGI</p>
+                  <button type="button" class="btn btn-social mb-2"href="#!"><i class="la la-twitter"></i></button>
+                  <button type="button" class="btn btn-social mb-2"href="https://www.facebook.com/theo.radde"><i class="la la-facebook"></i></button>
+                  <button type="button" class="btn btn-social mb-2" href="https://www.linkedin.com/in/th%C3%A9o-radde-225b7b1b7/"><i class="la la-linkedin"></i></button>
+              </div>
+              <div class="col-md-4">
+                  <img class="mx-auto rounded-circle" style="width: 200px;" src="static/assets/images/team/3.jpg" alt="louis" />
+                  <h4>Louis Regnier</h4>
+                  <p class="text-muted">Licence pro RGI</p>
+                  <button type="button" class="btn btn-social mb-2" href="#!"><i class="la la-twitter"></i></button>
+                  <button type="button" class="btn btn-social mb-2" href="https://www.facebook.com/louisrgnr"><i class="la la-facebook"></i></button>
+                  <button type="button" class="btn btn-social mb-2" href="https://www.linkedin.com/in/louis-regnier-3bb48a121/"><i class="la la-linkedin"></i></button>
+              </div>
+            </div>
+          </div>
+        </section>
+  </div>
+</div>
+{% endblock %}

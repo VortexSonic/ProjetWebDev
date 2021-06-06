@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+<style>
+    td{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    tr{
+        padding-top: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="banner bg-home"></div>
+
+<div class="main-container" id="appRoute">
+    <div class="section">
+        <ul class="nav nav-tabs line-tabs line-tabs-primary text-uppercase mb-4" id="artistDetails" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="song-tab" data-toggle="tab" href="#song" role="tab" aria-controls="song" aria-selected="true">Liste des clients - <span class="col-6 font-weight-bold">{{ total }} clients</span></a>
+            </li>
+        </ul>
+        <div class="tab-content" id="artistDetailsContent">
+            <div class="tab-pane fade show active" id="song" role="tabpanel" aria-labelledby="song-tab">
+                <div class="custom-list">
+                    <table style="width: 100%">
+                        <thead>
+                        <td><strong><u>PRENOM / NOM / ADRESSE</u></strong></td>
+                        <td><strong><u>EMAIL</u></strong></td>
+                        <td><strong><u>TELEPHONE</u></strong></td>
+                        <td><strong><u>FAX</u></strong></td>
+                        <td><strong><u>ENTREPRISE</u></strong></td>
+                        </thead>
+                        <tbody>
+                        {% for client in clients %}
+                        <tr>
+                            <td>
+                                <div class="text-dark custom-card--inline">
+                                    <div class="custom-card--inline-img">
+                                        <img src="{{ url_for('static', filename='artist_1.jpg') }}" alt="" class="card-img--radius-sm">
+                                    </div>
+
+                                    <div class="custom-card--inline-desc">
+                                        <p class="text-truncate mb-0">{{ client.first_name }} {{ client.last_name }}</p>
+                                        <p class="text-truncate text-muted font-sm">{{ client.address }}, {{ client.postal_code }}, {{ client.city }}, {{ client.state }}, {{ client.country }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                {{ client.email }}
+                            </td>
+                            <td>
+                                {{ client.phone }}
+                            </td>
+                            <td>
+                                {{ client.fax }}
+                            </td>
+                            <td style="white-space: normal">
+                                {{ client.company }}
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="banner bg-home"></div>
+<div class="main-container" id="appRoute">
+    <div class="section">
+        <div class="heading">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="flex-grow-1">
+                    <h4>Les artistes</h4>
+                </div>
+                <a href="/artistes" class="btn btn-sm btn-pill btn-air btn-primary">Tout voir</a>
+            </div>
+            <hr>
+        </div>
+        <div class="carousel-item-6 arrow-pos-2">
+            {% for artiste in artistes %}
+            <div class="custom-card">
+                <div class="custom-card--img">
+                    <a href="{{ url_for('artiste', id=artiste.artist_id) }}" class="external">
+                        <img src="{{ url_for('static', filename='artist_1.jpg') }}" alt="{{ artiste.name }}" class="card-img--radius-lg">
+                    </a>
+                </div>
+
+                <a href="{{ url_for('artiste', id=artiste.artist_id) }}" class="custom-card--link mt-2">
+                    <h6 class="mb-0">{{ artiste.name }}</h6>
+
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div class="heading">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="flex-grow-1">
+                    <h4>Les albums</h4>
+                </div>
+                <a href="/albums" class="btn btn-sm btn-pill btn-air btn-primary">Tout voir</a>
+            </div>
+            <hr>
+        </div>
+        <div class="carousel-item-6 arrow-pos-2">
+            {% for album in albums %}
+            <div class="custom-card">
+                <div class="custom-card--img">
+                    <a href="{{ url_for('album', id=album.album_id) }}" class="external">
+                        <img src="{{ url_for('static', filename='artist_2.jpg') }}" alt="{{ album.title }}" class="card-img--radius-lg">
+                    </a>
+                </div>
+
+                <a href="{{ url_for('album', id=album.album_id) }}" class="custom-card--link mt-2">
+                    <h6>{{ album.title }}</h6>
+                    <p>{{ album.artist.name }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div class="heading">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="flex-grow-1">
+                    <h4>Les genres</h4>
+                </div>
+                <a href="/genres" class="btn btn-sm btn-pill btn-air btn-primary">Tout voir</a>
+            </div>
+            <hr>
+        </div>
+        <div class="carousel-item-5 arrow-pos-3">
+            {% for genre in genres %}
+            <div class="custom-card">
+                <div class="custom-card--img">
+                    <a href="{{ url_for('genre', id=genre.genre_id) }}">
+                        <img src="{{ url_for('static', filename='genre_1.jpg') }}" alt="{{ genre.name }}" class="card-img--radius-md">
+                        <span class="bg-blur">{{ genre.name }}</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
